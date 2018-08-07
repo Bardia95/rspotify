@@ -35,7 +35,7 @@ module RSpotify
         grant_type: 'refresh_token',
         refresh_token: @@users_credentials[user_id]['refresh_token']
       }
-      response = RestClient.post(TOKEN_URI, request_body, RSpotify.send(:auth_header))
+      response = RestClient.post(TOKEN_URI, request_body, RSpotify.send(:oauth_header))
       response = JSON.parse(response)
       @@users_credentials[user_id]['token'] = response['access_token']
     rescue RestClient::BadRequest => e
